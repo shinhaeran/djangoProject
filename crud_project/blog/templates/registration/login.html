@@ -1,0 +1,25 @@
+{% extends 'blog/layout.html' %}
+{#login.html#}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="submit">
+    <input type="reset" value="reset">
+</form>
+<a href="{% url 'blog:logout'%}">로그아웃</a>
+</body>
+</html>
+
+{% endblock %}
+
+

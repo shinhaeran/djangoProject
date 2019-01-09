@@ -1,0 +1,36 @@
+{% extends 'blog/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+   
+    <h1>모든 게시글</h1>
+    <table border=1 class="table table-hover">
+        <thead>
+            <tr>
+                <th>  제목 </th>
+                <th>생성일</th>
+                <th>수정일</th>
+            </tr>  
+        </thead>
+
+        <tbody>
+            {% for post in post_all %}
+            <tr>
+                <td><a href="{% url 'blog:post_detail' post.id %}">{{post.title}}</a></td>
+                <td>{{post.created_at}}</td>
+                <td>{{post.updated_at}}</td>
+            </tr>
+            {%endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'blog:post_new' %}" class="btn btn-danger">새 글 생성</a>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,69 @@
+{% load static %}
+
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="{% static 'color.css' %}"> -->
+        <title>my blog</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <style>
+            header{
+            background-color: black;
+            display: flex;  
+            justify-content: center; 
+            height: 50px;
+            color: white;
+            align-items: center;
+            font-family: Bebas Neue;
+            font-size: 20px;
+            }
+
+            div{
+                height: 500px;
+                width: 100%;
+            }
+
+            nav{
+                height:50px;
+                width:100%
+            }
+
+            footer{
+            background-color: black;
+            color:white;
+            display: flex;  
+            justify-content: center; 
+            height: 50px;
+            /* text-align: center; */
+            /* align-content: center; */
+            align-items: center;
+
+            
+            
+        }
+        </style>
+        
+    </head>
+
+    <body>
+        <header> 
+            <span><strong>Ran's Mall</strong></span>
+        </header>
+        <!-- 하위 템플릿으로 상속해줄거야 -->
+        <nav class="navbar navbar-light"  style="background-color:pink;">
+            <a class="navbar-brand" href="{% url 'blog:post_main' %}">홈으로</a>
+            <a class="navbar-brand" href="{% url 'blog:post_index'%}">메뉴로 가기</a>
+            <a class="navbar-brand" href="{% url 'blog:login'%}">로그인</a>
+            <a class="navbar-brand" href="{% url 'blog:signup'%}">회원가입</a>
+        </nav>
+        
+        {% block content %}
+
+        {% endblock content %}
+
+    </body>
+
+    <footer>
+            <span>Copyright @ CBNU shin haeran</span>
+    </footer>
+</html>

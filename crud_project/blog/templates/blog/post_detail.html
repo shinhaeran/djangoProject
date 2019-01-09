@@ -1,0 +1,74 @@
+{% extends 'blog/layout.html' %}
+
+
+
+{% block content %}
+
+
+
+<a href="{% url 'blog:post_edit' post.id %}">수정하기</a>
+<a href="{% url 'blog:post_delete' post.id %}">삭제하기</a>
+<hr>
+
+<table border=1 class="table table-hover">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>재고 </th>
+                <th>가격</th>
+                <th>상품 설명</th>
+            </tr>  
+        </thead>
+
+        <tbody>
+            <tr>
+                
+                <td>{{post.title}}</td>
+                <td>{% for product in post.product_set.all %}
+                        {{product.quantity}}
+                    {% endfor %}</td>
+                <td>{% for product in post.product_set.all %}
+                        {{product.price}}
+                    {% endfor %}</td>
+                <td>{{post.text}}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <p>{{post.text}}</p>
+    <hr>
+    <p>created_at: {{post.created_at}}</p>
+    <p>updated_at: {{post.updated_at}}</p>
+
+
+<hr>
+<!-- 댓글작성 -->
+<form action="{% url 'blog:comment_new' post.id %}" method="post">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+        
+    </table>
+    <input type="submit" value="submit">
+</form>
+
+
+
+
+<!-- 부터 댓글이 보여지게 할거야 -->
+<hr> 
+{% for comment in post.comment_set.all %}
+    <p>
+        {{comment.text}}
+        <a href="{% url 'blog:comment_delete' post.id comment.id %}">삭제하기</a>
+    </p>
+
+
+{% empty %} 
+<!-- for문이 아무것도 없으면 empty밑에있는거 출력 -->
+    <p>댓글이 없습니다</p>
+{% endfor %}
+
+
+
+{% endblock content %}

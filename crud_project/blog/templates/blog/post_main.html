@@ -1,0 +1,50 @@
+{% extends 'blog/layout.html' %}
+
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <style>
+            div{
+            justify-content: center; 
+            align-content: center;
+            margin-bottom: 200px;
+            
+            }
+
+       	img {position: absolute; /* 이미지 포지션을 절대값으로 */
+            top:50%;
+            margin-top:-294.5px; 
+			
+            left:50%;	
+            margin-left:-300px;
+
+			
+		}
+
+        </style>
+    </head>
+    <body>
+
+            
+            <div>
+                <img src="{% static 'sale.jpg' %}" alt="세일"width="600"   height="300">
+            </div>
+
+            {% if user.is_authenticated %}
+                <h1>로그인 되어있음</h1>
+                <h1>{{user.username}}님 안녕하세요</h1>
+            {% else %}
+                <h1>로그인 되어있지 않음</h1>
+            {% endif %}
+
+           
+            
+    </body>
+</html>
+
+{% endblock content %}
+
+
+
+<!-- <a href=""></a> -->
